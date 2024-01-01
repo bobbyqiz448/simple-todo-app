@@ -13,16 +13,16 @@
 (defn toggle-status [current-status]
   (not current-status))
 
-(def todos (r/atom [{:task "Boil the pasta" :color "orange" :completed true}
-            {:task "Grind the basil" :color "green" :completed true}
-            {:task "Fry the garlic" :color "blue" :completed false}
-            {:task "Fry the garlic again you bitch!" :color "red" :completed false}
-            {:task "And it works for our own good!" :color "magenta" :completed true}
-            {:task "I own the year" :color "chocolate" :completed true}        ]))
+(def todos (r/atom [{:task "Boil the pasta" :color "orange" :completed? true}
+            {:task "Grind the basil" :color "green" :completed? true}
+            {:task "Fry the garlic" :color "blue" :completed?? false}
+            {:task "Fry the garlic again you bitch!" :color "red" :completed? false}
+            {:task "And it works for our own good!" :color "magenta" :completed? true}
+            {:task "I own the year" :color "chocolate" :completed? true}        ]))
 
 (defn todo-item [todo-map]
-  (if (:completed todo-map)
-    [:li.completed {:style {:color (:color todo-map)}} (:task todo-map)]
+  (if (:completed? todo-map)
+    [:li.completed? {:style {:color (:color todo-map)}} (:task todo-map)]
     [:li {:style {:color "red"}} (:task todo-map)])
   )
 
@@ -42,7 +42,7 @@
      [:form {:on-submit #((-> % .preventDefault)
                           (when-not (or (= @new-task "") (= @task-colour ""))
                             (log "Task: " @new-task " colour:" @task-colour " status:" @task-status);;TODO remove this line and line 10 too
-                            (swap! todos conj {:task @new-task :color @task-colour :completed @task-status})
+                            (swap! todos conj {:task @new-task :color @task-colour :completed? @task-status})
                             (reset! new-task "")
                             (reset! task-colour "")))}
       [:form-group
