@@ -22,7 +22,7 @@
 
 (defn todo-item [todo-map]
   (if (:completed? todo-map)
-    [:li.completed? {:style {:color (:color todo-map)}} (:task todo-map)]
+    [:li.completed {:style {:color (:color todo-map)}} (:task todo-map)]
     [:li {:style {:color "red"}} (:task todo-map)])
   )
 
